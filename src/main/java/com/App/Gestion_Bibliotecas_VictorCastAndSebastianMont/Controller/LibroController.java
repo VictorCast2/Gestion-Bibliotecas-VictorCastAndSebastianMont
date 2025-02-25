@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/Api/Admin")
 @PreAuthorize("hasRole('Admin')")
 @AllArgsConstructor
-public class AdminController {
+public class LibroController {
 
     @Autowired
     private final LibroService libroService;
@@ -22,7 +22,7 @@ public class AdminController {
     @GetMapping("/Libros")
     public String listarLibros(Model model) {
         model.addAttribute("libros", libroService.listarLibros());
-        return "";
+        return "libros";
     }
 
     @GetMapping("/UsuariosPrestamo")

@@ -73,7 +73,7 @@ public class ConfigurationSegurity {
      */
     @Bean
     public AuthenticationSuccessHandler successHandler() {
-        return (HttpServletRequest request, HttpServletResponse response, Authentication authentication) -> {
+        return (HttpServletRequest _, HttpServletResponse response, Authentication authentication) -> {
             if (authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_Admin"))) {
                 response.sendRedirect("/Api/Admin/Home");
             } else if (authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_User"))) {

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Libros</title>
+    <link rel="stylesheet" th:href="/Css/libros.css">
+</head>
+<body>
+    <header>
+        <h1>Biblioteca</h1>
+    </header>
+    
+    <main>
+        <h2>Lista de Libros</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Género</th>
+                    <th>Disponibilidad</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="libro : ${libros}">
+                    <td th:text="${libro.id}"></td>
+                    <td th:text="${libro.nombre}"></td>
+                    <td th:text="${libro.genero}"></td>
+                    <td th:text="${libro.disponible}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Biblioteca</p>
+    </footer>
+</body>
+</html>
