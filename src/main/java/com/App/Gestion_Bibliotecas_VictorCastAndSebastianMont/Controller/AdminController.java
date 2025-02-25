@@ -2,11 +2,12 @@ package com.App.Gestion_Bibliotecas_VictorCastAndSebastianMont.Controller;
 
 import com.App.Gestion_Bibliotecas_VictorCastAndSebastianMont.Model.LibroModel;
 import com.App.Gestion_Bibliotecas_VictorCastAndSebastianMont.Services.LibroService;
+import lombok.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import lombok.*;
+import org.springframework.web.bind.annotation.*;
 
 @Data
 @Controller
@@ -15,6 +16,7 @@ import lombok.*;
 @AllArgsConstructor
 public class AdminController {
 
+    @Autowired
     private final LibroService libroService;
 
     @GetMapping("/Libros")
@@ -23,9 +25,21 @@ public class AdminController {
         return "";
     }
 
+    @GetMapping("/UsuariosPrestamo")
+    public String listarUsuariosPrestamo(Model model){
+        libroService.listarLibros();
+        return "";
+    }
+
     @PostMapping("/Agregar")
     public String agregarLibro(LibroModel libro) {
         libroService.guardarLibro(libro);
+        return "";
+    }
+
+    @PostMapping("/Actualizar")
+    public String actualizarLibro(LibroModel libro) {
+        libroService.actualizarLibro(libro);
         return "";
     }
 
