@@ -40,6 +40,8 @@ public class ConfigurationSegurity {
                         .requestMatchers("/Api/Auth/Login", "/Api/Auth/Logout").permitAll() // Permite acceso público
                         .requestMatchers("/Css/**", "/Js/**", "/Img/**").permitAll() // Permite acceso público
                         .requestMatchers("/Error/**", "/Error").permitAll()
+                        .requestMatchers("/Api/Admin/**").hasRole("Admin") // Autenticación para rutas de administrador
+                        .requestMatchers("/Api/User/**").hasRole("User") // Autenticación para rutas de usuario
                         .anyRequest().authenticated() // Autenticación para otras rutas
                 )
                 .formLogin(form -> form
