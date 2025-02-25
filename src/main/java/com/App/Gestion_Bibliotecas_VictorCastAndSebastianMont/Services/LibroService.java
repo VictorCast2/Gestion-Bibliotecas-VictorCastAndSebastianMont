@@ -40,5 +40,5 @@ public class LibroService {
     @PreAuthorize("hasRole('User')")
     public void solicitarPrestamoLibro() {
     }
-    
+
 }
