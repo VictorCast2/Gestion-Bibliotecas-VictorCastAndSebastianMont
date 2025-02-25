@@ -75,9 +75,11 @@ public class ConfigurationSegurity {
     public AuthenticationSuccessHandler successHandler() {
         return (HttpServletRequest _, HttpServletResponse response, Authentication authentication) -> {
             if (authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_Admin"))) {
-                response.sendRedirect("/Api/Admin/Home");
+                System.out.println("Llego el Admin");
+                response.sendRedirect("/Api/Admin/Libros");
             } else if (authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_User"))) {
-                response.sendRedirect("/Api/User/Home");
+                System.out.println("Llego el User");
+                response.sendRedirect("/Api/User/Libros");
             } else {
                 response.sendRedirect("/Api/Auth/Login");
             }

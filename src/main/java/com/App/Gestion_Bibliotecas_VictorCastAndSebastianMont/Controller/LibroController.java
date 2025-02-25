@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 @Data
 @Controller
 @RequestMapping("/Api/Admin")
-@PreAuthorize("hasRole('Admin')")
 @AllArgsConstructor
 public class LibroController {
 
@@ -28,13 +27,13 @@ public class LibroController {
     @GetMapping("/UsuariosPrestamo")
     public String listarUsuariosPrestamo(Model model){
         libroService.listarLibros();
-        return "";
+        return "Libros";
     }
 
     @PostMapping("/Agregar")
     public String agregarLibro(LibroModel libro) {
         libroService.guardarLibro(libro);
-        return "";
+        return "Libros";
     }
 
     @PostMapping("/Actualizar")
@@ -46,7 +45,7 @@ public class LibroController {
     @PostMapping("/Eliminar")
     public String eliminarLibro(Long id) {
         libroService.eliminarLibro(id);
-        return "";
+        return "Libros";
     }
 
 }
