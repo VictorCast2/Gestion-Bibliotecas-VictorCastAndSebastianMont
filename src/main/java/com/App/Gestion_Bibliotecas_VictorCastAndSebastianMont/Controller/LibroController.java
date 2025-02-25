@@ -22,7 +22,7 @@ public class LibroController {
     @GetMapping("/Libros")
     public String listarLibros(Model model) {
         model.addAttribute("libros", libroService.listarLibros());
-        return "libros";
+        return "Libros";
     }
 
     @GetMapping("/UsuariosPrestamo")
