@@ -28,8 +28,9 @@ public class CustomUserDetailsService implements UserDetailsService {
                 usuario.getUsername(),
                 usuario.getPassword(),
                 usuario.getRoles()
-                        .stream().map(SimpleGrantedAuthority::new) // Convertir a SimpleGrantedAuthority
-                        .collect(Collectors.toList()) // Convertir a List
+                        .stream()
+                        .map(role -> new SimpleGrantedAuthority("ROLE_" + role)) // Asegura el prefijo si es necesario
+                        .collect(Collectors.toList())
         );
     }
 

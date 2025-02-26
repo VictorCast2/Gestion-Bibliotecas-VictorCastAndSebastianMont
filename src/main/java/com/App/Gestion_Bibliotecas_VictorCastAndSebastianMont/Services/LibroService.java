@@ -12,7 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 public class LibroService {
 
-    private final LibroRepository libroRepository;
+    private final LibroRepository libroRepository = null;
 
     public List<LibroModel> listarLibros() {
         return libroRepository.findAll();
@@ -30,6 +30,11 @@ public class LibroService {
 
     @PreAuthorize("hasRole('Admin')")
     public void actualizarLibro(LibroModel libro) {
+        if (libroRepository.existsById(libro.getId())) {
+            libroRepository.save(libro);
+        } else {
+            throw new IllegalArgumentException("El libro no existe");
+        }
     }
 
     @PreAuthorize("hasRole('User')")
@@ -38,7 +43,14 @@ public class LibroService {
     }
 
     @PreAuthorize("hasRole('User')")
-    public void solicitarPrestamoLibro() {
+    public void solicitarPrestamoLibro(Long id) {
+        LibroModel libro = libroRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Libro no encontrado"));
+        if (libro.getDisponible() > 0) {
+            libro.setDisponible(libro.getDisponible() - 1);
+            libroRepository.save(libro);
+        } else {
+            throw new IllegalArgumentException("No hay ejemplares disponibles");
+        }
     }
 
 }

@@ -38,7 +38,7 @@ public class ConfigurationSegurity {
                 .csrf(csrf -> csrf.disable()) // Deshabilita CSRF
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/Api/Auth/Login", "/Api/Auth/Logout").permitAll() // Permite acceso público
-                        .requestMatchers("/Css/**", "/Js/**", "/Img/**").permitAll() // Permite acceso público
+                        .requestMatchers("/Css/**", "/Img/**", "/Js/**").permitAll() // Permite acceso público
                         .requestMatchers("/Error/**", "/Error").permitAll()
                         .requestMatchers("/Api/Admin/**").hasRole("Admin") // Autenticación para rutas de administrador
                         .requestMatchers("/Api/User/**").hasRole("User") // Autenticación para rutas de usuario
@@ -73,11 +73,15 @@ public class ConfigurationSegurity {
      */
     @Bean
     public AuthenticationSuccessHandler successHandler() {
-        return (HttpServletRequest _, HttpServletResponse response, Authentication authentication) -> {
+        return (HttpServletRequest request, HttpServletResponse response, Authentication authentication) -> {
+            System.out.println("Entró al successHandler");
+
             if (authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_Admin"))) {
-                response.sendRedirect("/Api/Admin/Home");
+                System.out.println("Llego el Admin");
+                response.sendRedirect("/Api/Admin/Libros");
             } else if (authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_User"))) {
-                response.sendRedirect("/Api/User/Home");
+                System.out.println("Llego el User");
+                response.sendRedirect("/Api/User/Libros");
             } else {
                 response.sendRedirect("/Api/Auth/Login");
             }
@@ -94,10 +98,6 @@ public class ConfigurationSegurity {
         return new CustomUserDetailsService(usuarioRepository);
     }
 
-    /**
-     * Configura el encriptador de contraseñas.
-     * @return El encriptador de contraseñas BCrypt.
-     */
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -113,7 +113,7 @@ public class ConfigurationSegurity {
     public DaoAuthenticationProvider authenticationProvider(UserDetailsService userDetailsService, PasswordEncoder passwordEncoder) {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
         authProvider.setUserDetailsService(userDetailsService);
-        authProvider.setPasswordEncoder(passwordEncoder);
+        authProvider.setPasswordEncoder(passwordEncoder); // Aquí lo usa correctamente
         return authProvider;
     }
 
