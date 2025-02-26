@@ -3,6 +3,9 @@ package com.App.Gestion_Bibliotecas_VictorCastAndSebastianMont.Controller;
 import com.App.Gestion_Bibliotecas_VictorCastAndSebastianMont.Model.LibroModel;
 import com.App.Gestion_Bibliotecas_VictorCastAndSebastianMont.Services.LibroService;
 import lombok.*;
+
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -27,26 +30,19 @@ public class LibroController {
 
     @GetMapping("/UsuariosPrestamo")
     public String listarUsuariosPrestamo(Model model){
-        libroService.listarLibros();
-        return "";
+        model.addAttribute("usuarios", new ArrayList<>()); // Simulación
+        return "usuarios"; // Asegúrate de tener una vista usuarios.html
     }
 
     @PostMapping("/Agregar")
-    public String agregarLibro(LibroModel libro) {
+    public String agregarLibro(@ModelAttribute LibroModel libro) {
         libroService.guardarLibro(libro);
-        return "";
-    }
-
-    @PostMapping("/Actualizar")
-    public String actualizarLibro(LibroModel libro) {
-        libroService.actualizarLibro(libro);
-        return "";
+        return "redirect:/Api/Admin/Libros";
     }
 
     @PostMapping("/Eliminar")
-    public String eliminarLibro(Long id) {
+    public String eliminarLibro(@RequestParam Long id) {
         libroService.eliminarLibro(id);
-        return "";
+        return "redirect:/Api/Admin/Libros";
     }
-
 }

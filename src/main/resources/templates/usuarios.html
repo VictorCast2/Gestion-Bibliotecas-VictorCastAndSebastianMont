@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Libros</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <header>
+        <h1>Biblioteca Virtual</h1>
+        <nav>
+            <ul>
+                <li><a href="/Usuario/Libros">Ver Catálogo</a></li>
+                <li><a href="/Usuario/Prestamos">Consultar Mis Préstamos</a></li>
+                <li th:if="${#authorization.expression('hasRole(''ADMIN'')')}"><a href="/Api/Admin/Libros">Administrar Libros</a></li>
+                <li><a href="/logout">Cerrar Sesión</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section>
+            <h2>Catálogo de Libros</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Género</th>
+                        <th>Disponibles</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="libro : ${libros}">
+                        <td th:text="${libro.id}"></td>
+                        <td th:text="${libro.nombre}"></td>
+                        <td th:text="${libro.genero}"></td>
+                        <td th:text="${libro.disponible}"></td>
+                        <td>
+                            <form th:action="@{/Usuario/Prestamo}" method="post">
+                                <input type="hidden" name="id" th:value="${libro.id}">
+                                <button type="submit">Solicitar Préstamo</button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+</body>
+</html>

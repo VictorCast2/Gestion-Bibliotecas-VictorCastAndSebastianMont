@@ -3,34 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Libros</title>
-    <link rel="stylesheet" th:href="/Css/libros.css">
+    <title>Gestión de Libros</title>
+    <link rel="stylesheet" th:href="@{/static/css/styles.css}">
 </head>
 <body>
     <header>
-        <h1>Biblioteca</h1>
+        <h1>Gestión de Libros</h1>
+        <nav>
+            <ul>
+                <li><a href="/Api/Admin/Libros">Lista de Libros</a></li>
+                <li><a href="/Api/Admin/UsuariosPrestamo">Usuarios con Préstamos Activos</a></li>
+            </ul>
+        </nav>
     </header>
-    
+
     <main>
-        <h2>Lista de Libros</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Género</th>
-                    <th>Disponibilidad</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="libro : ${libros}">
-                    <td th:text="${libro.id}"></td>
-                    <td th:text="${libro.nombre}"></td>
-                    <td th:text="${libro.genero}"></td>
-                    <td th:text="${libro.disponible}"></td>
-                </tr>
-            </tbody>
-        </table>
+        <section>
+            <h2>Agregar / Editar Libro</h2>
+            <form th:action="@{/Api/Admin/Agregar}" method="post">
+                <input type="hidden" name="id" th:value="${libro?.id}" />
+                <label>Nombre:</label>
+                <input type="text" name="nombre" th:value="${libro?.nombre}" required>
+                <label>Género:</label>
+                <input type="text" name="genero" th:value="${libro?.genero}" required>
+                <label>Disponible:</label>
+                <input type="number" name="disponible" th:value="${libro?.disponible}" required>
+                <button type="submit">Guardar</button>
+            </form>
+        </section>
+
+        <section>
+            <h2>Lista de Libros</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Género</th>
+                        <th>Disponible</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="libro : ${libros}">
+                        <td th:text="${libro.id}"></td>
+                        <td th:text="${libro.nombre}"></td>
+                        <td th:text="${libro.genero}"></td>
+                        <td th:text="${libro.disponible}"></td>
+                        <td>
+                            <a th:href="@{/Api/Admin/Actualizar(id=${libro.id})}">Editar</a>
+                            <form th:action="@{/Api/Admin/Eliminar}" method="post" style="display:inline;">
+                                <input type="hidden" name="id" th:value="${libro.id}">
+                                <button type="submit">Eliminar</button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
     </main>
 
     <footer>
