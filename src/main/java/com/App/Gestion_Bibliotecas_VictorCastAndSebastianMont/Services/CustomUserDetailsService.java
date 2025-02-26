@@ -16,9 +16,9 @@ public class CustomUserDetailsService implements UserDetailsService {
     private final UserRepository userRepository;
 
     @Override
-    public UserDetails loadUserByUsername(String Username) throws UsernameNotFoundException {
-        System.out.println("Intentando autenticar usuario: " + Username);
-        UserModel usuario = userRepository.findByUsername(Username)
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        System.out.println("Intentando autenticar usuario: " + username);
+        UserModel usuario = userRepository.findByUsername(username)
                 .orElseThrow(() -> {
                     System.out.println("Usuario no encontrado en la base de datos.");
                     return new UsernameNotFoundException("Usuario no encontrado ... ");
@@ -28,9 +28,8 @@ public class CustomUserDetailsService implements UserDetailsService {
                 usuario.getUsername(),
                 usuario.getPassword(),
                 usuario.getRoles()
-                        .stream()
-                        .map(role -> new SimpleGrantedAuthority("ROLE_" + role)) // Asegura el prefijo si es necesario
-                        .collect(Collectors.toList())
+                        .stream().map(SimpleGrantedAuthority::new) // Convertir a SimpleGrantedAuthority
+                        .collect(Collectors.toList()) // Convertir a List
         );
     }
 

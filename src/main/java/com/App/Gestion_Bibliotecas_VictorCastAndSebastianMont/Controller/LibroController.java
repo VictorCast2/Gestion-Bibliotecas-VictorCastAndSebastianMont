@@ -24,7 +24,7 @@ public class LibroController {
     @GetMapping("/Libros")
     public String listarLibros(Model model) {
         model.addAttribute("libros", libroService.listarLibros());
-        return "Libros";
+        return "libros";
     }
 
     @GetMapping("/UsuariosPrestamo")
@@ -36,7 +36,7 @@ public class LibroController {
     @PostMapping("/Agregar")
     public String agregarLibro(@ModelAttribute LibroModel libro) {
         libroService.guardarLibro(libro);
-        return "Libros";
+        return "libros";
     }
 
     @PostMapping("/Actualizar")
@@ -48,6 +48,6 @@ public class LibroController {
     @PostMapping("/Eliminar")
     public String eliminarLibro(@RequestParam Long id) {
         libroService.eliminarLibro(id);
-        return "Libros";
+        return "libros";
     }
 }

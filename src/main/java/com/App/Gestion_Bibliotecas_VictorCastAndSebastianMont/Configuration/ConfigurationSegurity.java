@@ -16,7 +16,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
@@ -40,8 +40,6 @@ public class ConfigurationSegurity {
                         .requestMatchers("/Api/Auth/Login", "/Api/Auth/Logout").permitAll() // Permite acceso público
                         .requestMatchers("/Css/**", "/Img/**", "/Js/**").permitAll() // Permite acceso público
                         .requestMatchers("/Error/**", "/Error").permitAll()
-                        .requestMatchers("/Api/Admin/**").hasRole("Admin") // Autenticación para rutas de administrador
-                        .requestMatchers("/Api/User/**").hasRole("User") // Autenticación para rutas de usuario
                         .anyRequest().authenticated() // Autenticación para otras rutas
                 )
                 .formLogin(form -> form
@@ -74,13 +72,9 @@ public class ConfigurationSegurity {
     @Bean
     public AuthenticationSuccessHandler successHandler() {
         return (HttpServletRequest request, HttpServletResponse response, Authentication authentication) -> {
-            System.out.println("Entró al successHandler");
-
             if (authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_Admin"))) {
-                System.out.println("Llego el Admin");
                 response.sendRedirect("/Api/Admin/Libros");
             } else if (authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_User"))) {
-                System.out.println("Llego el User");
                 response.sendRedirect("/Api/User/Libros");
             } else {
                 response.sendRedirect("/Api/Auth/Login");
@@ -100,7 +94,8 @@ public class ConfigurationSegurity {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+        // Sin encriptar (solo para pruebas)
+        return NoOpPasswordEncoder.getInstance();
     }
 
     /**
@@ -111,9 +106,9 @@ public class ConfigurationSegurity {
      */
     @Bean
     public DaoAuthenticationProvider authenticationProvider(UserDetailsService userDetailsService, PasswordEncoder passwordEncoder) {
-        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-        authProvider.setUserDetailsService(userDetailsService);
-        authProvider.setPasswordEncoder(passwordEncoder); // Aquí lo usa correctamente
+        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider(); // Proveedor de autenticación
+        authProvider.setUserDetailsService(userDetailsService); // Servicio de usuarios
+        authProvider.setPasswordEncoder(passwordEncoder); // Encriptador de contraseñas
         return authProvider;
     }
 
