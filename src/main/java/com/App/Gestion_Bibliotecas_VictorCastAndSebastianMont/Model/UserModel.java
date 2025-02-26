@@ -26,4 +26,28 @@ public class UserModel{
     @Column(name = "Rol")
     private Set<String> Roles;
 
+    public String getPassword() {
+        return this.Password;
+    }
+
+    public void setPassword(String password) {
+        this.Password = password;
+    }
+
+    public Set<String> getRoles() {
+        return this.Roles;
+    }
+
+    public void setRoles(Set<String> roles) {
+        this.Roles = roles;
+    }
+
+    public String getUsername() {
+        return this.username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
 }

@@ -2,7 +2,6 @@ package com.App.Gestion_Bibliotecas_VictorCastAndSebastianMont.Configuration;
 
 import com.App.Gestion_Bibliotecas_VictorCastAndSebastianMont.Repository.UserRepository;
 import com.App.Gestion_Bibliotecas_VictorCastAndSebastianMont.Services.CustomUserDetailsService;
-import jakarta.servlet.http.*;
 import org.springframework.context.annotation.*;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -13,13 +12,10 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.SessionManagementConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 @Configuration
 @EnableWebSecurity
@@ -40,11 +36,12 @@ public class ConfigurationSegurity {
                         .requestMatchers("/Api/Auth/Login", "/Api/Auth/Logout").permitAll() // Permite acceso público
                         .requestMatchers("/Css/**", "/Img/**", "/Js/**").permitAll() // Permite acceso público
                         .requestMatchers("/Error/**", "/Error").permitAll()
+                        .requestMatchers("/Api/Admin/Libros").permitAll()
                         .anyRequest().authenticated() // Autenticación para otras rutas
                 )
                 .formLogin(form -> form
                         .loginPage("/Api/Auth/Login") // Página de inicio de sesión personalizada
-                        .successHandler(successHandler()) // Manejador de inicio de sesión
+                        .defaultSuccessUrl("/Api/Admin/Libros", true)
                         .failureUrl("/Error") // Redirigir si hay error
                         .permitAll() // Permitir acceso a la página de login
                 )
@@ -66,23 +63,6 @@ public class ConfigurationSegurity {
     }
 
     /**
-     * Configura el manejador de inicio de sesión
-     * @return El manejador de inicio de sesión personalizado.
-     */
-    @Bean
-    public AuthenticationSuccessHandler successHandler() {
-        return (HttpServletRequest request, HttpServletResponse response, Authentication authentication) -> {
-            if (authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_Admin"))) {
-                response.sendRedirect("/Api/Admin/Libros");
-            } else if (authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_User"))) {
-                response.sendRedirect("/Api/User/Libros");
-            } else {
-                response.sendRedirect("/Api/Auth/Login");
-            }
-        };
-    }
-
-    /**
      * Configura el servicio de usuarios.
      * @param usuarioRepository El repositorio de usuarios.
      * @return El servicio de usuarios personalizado.
@@ -94,8 +74,7 @@ public class ConfigurationSegurity {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        // Sin encriptar (solo para pruebas)
-        return NoOpPasswordEncoder.getInstance();
+        return new BCryptPasswordEncoder();
     }
 
     /**

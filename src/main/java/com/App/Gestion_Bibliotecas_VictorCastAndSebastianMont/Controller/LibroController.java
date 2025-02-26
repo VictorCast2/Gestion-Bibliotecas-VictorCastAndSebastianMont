@@ -13,7 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Data
-@Controller
+@RestController
 @RequestMapping("/Api/Admin")
 @AllArgsConstructor
 public class LibroController {
@@ -23,8 +23,8 @@ public class LibroController {
 
     @GetMapping("/Libros")
     public String listarLibros(Model model) {
-        model.addAttribute("libros", libroService.listarLibros());
-        return "libros";
+
+        return "Libros";
     }
 
     @GetMapping("/UsuariosPrestamo")
@@ -36,7 +36,7 @@ public class LibroController {
     @PostMapping("/Agregar")
     public String agregarLibro(@ModelAttribute LibroModel libro) {
         libroService.guardarLibro(libro);
-        return "libros";
+        return "Libros";
     }
 
     @PostMapping("/Actualizar")
@@ -48,6 +48,6 @@ public class LibroController {
     @PostMapping("/Eliminar")
     public String eliminarLibro(@RequestParam Long id) {
         libroService.eliminarLibro(id);
-        return "libros";
+        return "Libros";
     }
 }

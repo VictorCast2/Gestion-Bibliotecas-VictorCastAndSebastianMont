@@ -19,15 +19,15 @@ public class GestionBibliotecasVictorCastAndSebastianMontApplication implements 
 	 */
 	@Override
 	public void run(String... args) throws Exception {
-		BCryptPasswordEncoder encoder1 = new BCryptPasswordEncoder();
-		String rawPassword1 = "admin";
-		String encodedPassword1 = encoder1.encode(rawPassword1);
-		System.out.println("Contraseña encriptada del Admin: " + encodedPassword1);
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		String rawPassword = "tuContraseña"; // Asegúrate de probar con la contraseña correcta
+		String encodedPassword = encoder.encode("tuContraseña");
 
-		BCryptPasswordEncoder encoder2 = new BCryptPasswordEncoder();
-		String rawPassword2 = "user";
-		String encodedPassword2 = encoder2.encode(rawPassword2);
-		System.out.println("Contraseña encriptada del User: " + encodedPassword2);
+		if (encoder.matches(rawPassword, encodedPassword)) {
+			System.out.println("¡Contraseña válida!");
+		} else {
+			System.out.println("Contraseña incorrecta.");
+		}
 	}
 
 }
