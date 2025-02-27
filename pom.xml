@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -11,7 +11,7 @@
 	<groupId>com.App</groupId>
 	<artifactId>Gestion-Bibliotecas-VictorCastAndSebastianMont</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>GestionBibliotecasVictorCastAndSebastianMont</name>
+	<name>Gestion-Bibliotecas-VictorCastAndSebastianMont</name>
 	<description>Una biblioteca pública desea modernizar su sistema de préstamos de libros.  Necesita una plataforma donde los administradores tengan acceso a gestionar libros  y los usuarios tengan acceso a buscar y reservar ejemplares.  Solo usuarios registrados pueden iniciar sesión.</description>
 	<url/>
 	<licenses>
