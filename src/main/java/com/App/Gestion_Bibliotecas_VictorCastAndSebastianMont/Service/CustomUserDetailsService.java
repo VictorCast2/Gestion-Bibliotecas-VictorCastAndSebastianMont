@@ -1,4 +1,4 @@
-package com.App.Gestion_Bibliotecas_VictorCastAndSebastianMont.Services;
+package com.App.Gestion_Bibliotecas_VictorCastAndSebastianMont.Service;
 
 import com.App.Gestion_Bibliotecas_VictorCastAndSebastianMont.Model.UserModel;
 import com.App.Gestion_Bibliotecas_VictorCastAndSebastianMont.Repository.UserRepository;

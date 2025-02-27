@@ -19,7 +19,7 @@ public class UserModel{
     private String username;
 
     @Column(nullable = false)
-    private String Password;
+    private String password;
 
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "Roles", joinColumns = @JoinColumn(name = "Usuario_Id"))
@@ -27,11 +27,11 @@ public class UserModel{
     private Set<String> Roles;
 
     public String getPassword() {
-        return this.Password;
+        return this.password;
     }
 
     public void setPassword(String password) {
-        this.Password = password;
+        this.password = password;
     }
 
     public Set<String> getRoles() {

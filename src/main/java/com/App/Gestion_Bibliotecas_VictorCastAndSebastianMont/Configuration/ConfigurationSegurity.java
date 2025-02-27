@@ -1,8 +1,9 @@
 package com.App.Gestion_Bibliotecas_VictorCastAndSebastianMont.Configuration;
 
 import com.App.Gestion_Bibliotecas_VictorCastAndSebastianMont.Repository.UserRepository;
-import com.App.Gestion_Bibliotecas_VictorCastAndSebastianMont.Services.CustomUserDetailsService;
-import org.springframework.context.annotation.*;
+import com.App.Gestion_Bibliotecas_VictorCastAndSebastianMont.Service.CustomUserDetailsService;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
@@ -85,9 +86,9 @@ public class ConfigurationSegurity {
      */
     @Bean
     public DaoAuthenticationProvider authenticationProvider(UserDetailsService userDetailsService, PasswordEncoder passwordEncoder) {
-        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider(); // Proveedor de autenticación
-        authProvider.setUserDetailsService(userDetailsService); // Servicio de usuarios
-        authProvider.setPasswordEncoder(passwordEncoder); // Encriptador de contraseñas
+        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+        authProvider.setUserDetailsService(userDetailsService);
+        authProvider.setPasswordEncoder(passwordEncoder);
         return authProvider;
     }
 
