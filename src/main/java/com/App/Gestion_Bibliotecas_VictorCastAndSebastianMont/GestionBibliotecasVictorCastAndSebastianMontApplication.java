@@ -22,6 +22,9 @@ public class GestionBibliotecasVictorCastAndSebastianMontApplication implements 
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		String encodedPassword = encoder.encode("admin");
 		System.out.println(encodedPassword);
+
+		String encodedPassword2 = encoder.encode("user");
+		System.out.println(encodedPassword2);
 	}
 
 }
