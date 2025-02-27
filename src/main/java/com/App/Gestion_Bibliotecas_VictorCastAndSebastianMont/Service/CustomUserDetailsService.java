@@ -2,6 +2,7 @@ package com.App.Gestion_Bibliotecas_VictorCastAndSebastianMont.Service;
 
 import com.App.Gestion_Bibliotecas_VictorCastAndSebastianMont.Model.UserModel;
 import com.App.Gestion_Bibliotecas_VictorCastAndSebastianMont.Repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.*;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,7 @@ import lombok.*;
 @AllArgsConstructor
 public class CustomUserDetailsService implements UserDetailsService {
 
+    @Autowired
     private final UserRepository userRepository;
 
     @Override
@@ -28,12 +30,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         return new User(
                 usuario.getUsername(),
                 usuario.getPassword(),
-                usuario.getRoles().stream()
-                        .map(role -> {
-                            System.out.println("Asignando rol: " + role);
-                            return new SimpleGrantedAuthority(role);
-                        })
-                        .collect(Collectors.toList())
+                usuario.getRoles().stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList())
         );
     }
 

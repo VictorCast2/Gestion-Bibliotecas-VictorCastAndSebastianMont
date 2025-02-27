@@ -42,7 +42,7 @@ public class ConfigurationSegurity {
                 )
                 .formLogin(form -> form
                         .loginPage("/Api/Auth/Login") // Página de inicio de sesión personalizada
-                        .defaultSuccessUrl("/Api/Admin/Libros", true)
+                        .defaultSuccessUrl("/Api/Auth/Home", true)
                         .failureUrl("/Error") // Redirigir si hay error
                         .permitAll() // Permitir acceso a la página de login
                 )

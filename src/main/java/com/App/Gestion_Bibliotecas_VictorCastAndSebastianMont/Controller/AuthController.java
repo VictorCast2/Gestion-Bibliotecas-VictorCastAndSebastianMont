@@ -15,4 +15,9 @@ public class AuthController {
         return "Login";
     }
 
+    @GetMapping("/Home")
+    public String home() {
+        return "Libros";
+    }
+
 }
