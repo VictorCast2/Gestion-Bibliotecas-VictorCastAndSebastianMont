@@ -42,7 +42,7 @@ public class ConfigurationSegurity {
                 )
                 .formLogin(form -> form
                         .loginPage("/Api/Auth/Login") // Página de inicio de sesión personalizada
-                        .defaultSuccessUrl("/Api/Auth/Home", true)
+                        .successHandler()
                         .failureUrl("/Error") // Redirigir si hay error
                         .permitAll() // Permitir acceso a la página de login
                 )
@@ -106,5 +106,8 @@ public class ConfigurationSegurity {
                 .authenticationProvider(authenticationProvider(userDetailsService, passwordEncoder))
                 .build();
     }
+
+    @Bean
+    public
 
 }
