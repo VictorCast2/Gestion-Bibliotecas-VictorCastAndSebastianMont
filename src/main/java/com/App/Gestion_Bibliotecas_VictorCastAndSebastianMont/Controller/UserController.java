@@ -1,6 +1,6 @@
 package com.App.Gestion_Bibliotecas_VictorCastAndSebastianMont.Controller;
 
-import com.App.Gestion_Bibliotecas_VictorCastAndSebastianMont.Service.LibroService;
+import com.App.Gestion_Bibliotecas_VictorCastAndSebastianMont.Service.LibroServices;
 import lombok.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     @Autowired
-    private final LibroService libroService;
+    private final LibroServices libroService;
 
     @GetMapping("/Buscar")
     public String buscarLibro() {

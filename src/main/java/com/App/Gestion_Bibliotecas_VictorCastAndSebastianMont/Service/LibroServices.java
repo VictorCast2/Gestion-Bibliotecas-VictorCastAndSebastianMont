@@ -9,7 +9,7 @@ import java.util.List;
 @Data
 @Service
 @AllArgsConstructor
-public class LibroService {
+public class LibroServices {
 
     private final LibroRepository libroRepository = null;
 
