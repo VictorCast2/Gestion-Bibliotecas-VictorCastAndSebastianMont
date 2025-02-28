@@ -1,7 +1,7 @@
 package com.App.Gestion_Bibliotecas_VictorCastAndSebastianMont.Configuration;
 
 import com.App.Gestion_Bibliotecas_VictorCastAndSebastianMont.Repository.UserRepository;
-import com.App.Gestion_Bibliotecas_VictorCastAndSebastianMont.Service.CustomUserDetailsService;
+import com.App.Gestion_Bibliotecas_VictorCastAndSebastianMont.Services.CustomUserDetailsServices;
 import org.springframework.context.annotation.*;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -70,7 +70,7 @@ public class ConfigurationSegurity {
      */
     @Bean
     public UserDetailsService userDetailsService(UserRepository usuarioRepository) {
-        return new CustomUserDetailsService(usuarioRepository);
+        return new CustomUserDetailsServices(usuarioRepository);
     }
 
     @Bean

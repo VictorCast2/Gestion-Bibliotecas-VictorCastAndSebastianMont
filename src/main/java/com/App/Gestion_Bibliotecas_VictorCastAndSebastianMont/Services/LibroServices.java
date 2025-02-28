@@ -1,4 +1,4 @@
-package com.App.Gestion_Bibliotecas_VictorCastAndSebastianMont.Service;
+package com.App.Gestion_Bibliotecas_VictorCastAndSebastianMont.Services;
 
 import com.App.Gestion_Bibliotecas_VictorCastAndSebastianMont.Model.LibroModel;
 import com.App.Gestion_Bibliotecas_VictorCastAndSebastianMont.Repository.LibroRepository;

@@ -2,7 +2,7 @@ package com.App.Gestion_Bibliotecas_VictorCastAndSebastianMont.Controller;
 
 import java.util.ArrayList;
 import com.App.Gestion_Bibliotecas_VictorCastAndSebastianMont.Model.LibroModel;
-import com.App.Gestion_Bibliotecas_VictorCastAndSebastianMont.Service.LibroServices;
+import com.App.Gestion_Bibliotecas_VictorCastAndSebastianMont.Services.LibroServices;
 import lombok.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;

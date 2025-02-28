@@ -1,4 +1,4 @@
-package com.App.Gestion_Bibliotecas_VictorCastAndSebastianMont.Service;
+package com.App.Gestion_Bibliotecas_VictorCastAndSebastianMont.Services;
 
 import com.App.Gestion_Bibliotecas_VictorCastAndSebastianMont.Model.UserModel;
 import com.App.Gestion_Bibliotecas_VictorCastAndSebastianMont.Repository.UserRepository;
@@ -12,7 +12,7 @@ import lombok.*;
 @Data
 @Service
 @AllArgsConstructor
-public class CustomUserDetailsService implements UserDetailsService {
+public class CustomUserDetailsServices implements UserDetailsService {
 
     @Autowired
     private final UserRepository userRepository;
