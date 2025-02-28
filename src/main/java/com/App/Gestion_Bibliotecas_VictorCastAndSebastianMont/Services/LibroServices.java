@@ -3,6 +3,7 @@ package com.App.Gestion_Bibliotecas_VictorCastAndSebastianMont.Services;
 import com.App.Gestion_Bibliotecas_VictorCastAndSebastianMont.Model.LibroModel;
 import com.App.Gestion_Bibliotecas_VictorCastAndSebastianMont.Repository.LibroRepository;
 import lombok.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
@@ -11,21 +12,29 @@ import java.util.List;
 @AllArgsConstructor
 public class LibroServices {
 
-    private final LibroRepository libroRepository = null;
+    @Autowired
+    private final LibroRepository libroRepository;
 
-    public List<LibroModel> listarLibros() {
-        return libroRepository.findAll();
-    }
-
+    /**
+     * Guarda un libro en la base de datos
+     * @param libro
+     */
     public void guardarLibro(LibroModel libro) {
         libroRepository.save(libro);
     }
 
+    /**
+     * Elimina un libro de la base de datos
+     * @param id
+     */
     public void eliminarLibro(Long id) {
         libroRepository.deleteById(id);
     }
 
-
+    /**
+     * Actualiza un libro en la base de datos
+     * @param libro
+     */
     public void actualizarLibro(LibroModel libro) {
         if (libroRepository.existsById(libro.getId())) {
             libroRepository.save(libro);
@@ -34,11 +43,19 @@ public class LibroServices {
         }
     }
 
+    /**
+     * Busca un libro en la base de datos
+     * @return
+     */
     public List<LibroModel> buscarLibro() {
         return libroRepository.findAll();
     }
 
 
+    /**
+     * Solicita un prestamo de un libro
+     * @param id
+     */
     public void solicitarPrestamoLibro(Long id) {
         LibroModel libro = libroRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Libro no encontrado"));
         if (libro.getDisponible() > 0) {
