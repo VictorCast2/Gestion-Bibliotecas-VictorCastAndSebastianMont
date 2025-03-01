@@ -35,9 +35,16 @@ public class LibroServices {
      * Actualiza un libro en la base de datos
      * @param libro
      */
-    public void actualizarLibro(LibroModel libro) {
-        if (libroRepository.existsById(libro.getId())) {
-            libroRepository.save(libro);
+    public LibroModel actualizarLibro(LibroModel libro, Long id) {
+        if (libroRepository.existsById(id)) {
+            LibroModel Libro1 = libroRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Libro no encontrado"));
+            Libro1.setTitulo(libro.getTitulo());
+            Libro1.setAutor(libro.getAutor());
+            Libro1.setAnno(libro.getAnno());
+            Libro1.setDescripcion(libro.getDescripcion());
+            Libro1.setDisponible(libro.getDisponible());
+            Libro1.setGenero(libro.getGenero());
+            return libroRepository.save(Libro1);
         } else {
             throw new IllegalArgumentException("El libro no existe");
         }
