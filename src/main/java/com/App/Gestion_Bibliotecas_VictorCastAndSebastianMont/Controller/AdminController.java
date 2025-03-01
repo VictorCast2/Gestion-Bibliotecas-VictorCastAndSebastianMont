@@ -20,30 +20,30 @@ public class AdminController {
     @PostMapping("/UsuariosPrestamo")
     public String buscarUsuariosPrestamos(Model model){
         model.addAttribute("usuariosPrestamos", new ArrayList<>());
-        return "Libro";
+        return "Libros";
     }
 
     @PostMapping("/Agregar")
     public String agregarLibro(@ModelAttribute LibroModel libro) {
         libroServices.guardarLibro(libro);
-        return "Libro";
+        return "Libros";
     }
 
     @PutMapping("/Actualizar")
     public String actualizarLibro(LibroModel libro) {
         libroServices.actualizarLibro(libro);
-        return "Libro";
+        return "Libros";
     }
 
     @DeleteMapping("/Eliminar")
     public String eliminarLibro(@RequestParam Long id) {
         libroServices.eliminarLibro(id);
-        return "Libro";
+        return "Libros";
     }
 
     @GetMapping("/Home")
     public String Admin() {
-        return "";
+        return "Libros";
     }
 
 }
