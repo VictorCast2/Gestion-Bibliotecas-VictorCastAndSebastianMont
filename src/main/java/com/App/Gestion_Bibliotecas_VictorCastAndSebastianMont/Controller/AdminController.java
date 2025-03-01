@@ -4,12 +4,13 @@ import com.App.Gestion_Bibliotecas_VictorCastAndSebastianMont.Model.LibroModel;
 import com.App.Gestion_Bibliotecas_VictorCastAndSebastianMont.Services.LibroServices;
 import lombok.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 
 @Data
-@RestController
+@Controller
 @RequestMapping("/Api/Admin")
 @AllArgsConstructor
 public class AdminController {
@@ -42,7 +43,8 @@ public class AdminController {
     }
 
     @GetMapping("/Home")
-    public String Admin() {
+    public String Admin(Model model) {
+        model.addAttribute("libro","Libros");
         return "Libros";
     }
 
