@@ -32,24 +32,24 @@
                                 <th>Autor</th>
                                 <th>Año</th>
                                 <th>Disponible</th>
+                                <th>Método</th>
                             </tr>
                         </thead>
                     <tbody>
-
                         <tr th:each="libro : ${libros}">
-                                <td th:text="${libro.id}"></td>
-                                <td th:text="${libro.titulo}"></td>
-                                <td th:text="${libro.genero}"></td>
-                                <td th:text="${libro.descripcion}"></td>
-                                <td th:text="${libro.autor}"></td>
-                                <td th:text="${libro.año}"></td>
-                                <td th:text="${libro.disponible}"></td>
-                            <td>
-                                <form th:action="@{/Api/User/Prestamo}" method="post">
-                                    <input type="hidden" name="id" th:value="${libro.id}">
-                                    <button type="submit"  class="solicitar-btn">Solicitar Préstamo</button>
-                                </form>
-                            </td>
+                                <td th:text="${libro.Id}"></td>
+                                <td th:text="${libro.Titulo}"></td>
+                                <td th:text="${libro.Genero}"></td>
+                                <td th:text="${libro.Descripcion}"></td>
+                                <td th:text="${libro.Autor}"></td>
+                                <td th:text="${libro.Anno}"></td>
+                                <td th:text="${libro.Disponible}"></td>
+                                <td>
+                                    <form th:action="@{/Api/User/Prestamo}" method="post">
+                                        <input type="hidden" name="id" th:value="${libro.Id}">
+                                        <button type="submit"  class="solicitar-btn">Solicitar Préstamo</button>
+                                    </form>
+                                </td>
                         </tr>
                     </tbody>
                 </table>

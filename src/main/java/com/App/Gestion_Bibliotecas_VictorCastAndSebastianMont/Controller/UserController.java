@@ -4,6 +4,7 @@ import com.App.Gestion_Bibliotecas_VictorCastAndSebastianMont.Services.LibroServ
 import lombok.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Data
@@ -16,8 +17,8 @@ public class UserController {
     private final LibroServices libroServices;
 
     @GetMapping("/Home")
-    public String buscarLibro() {
-        libroServices.buscarLibro();
+    public String buscarLibro(Model model) {
+        model.addAttribute("libros",libroServices.buscarLibro());
         return "Usuarios";
     }
 
