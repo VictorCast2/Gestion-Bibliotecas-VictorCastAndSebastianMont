@@ -3,30 +3,15 @@ body {
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
+    color: #333;
 }
 
 header {
-    background-color: #333;
+    background-color: #4A3AFF;
     color: white;
     text-align: center;
-    padding: 15px;
-}
-
-nav ul {
-    list-style: none;
-    padding: 0;
-    text-align: center;
-}
-
-nav ul li {
-    display: inline;
-    margin: 0 15px;
-}
-
-nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
+    padding: 15px 0;
+    font-size: 24px;
 }
 
 main {
@@ -34,26 +19,8 @@ main {
     margin: 20px auto;
     background: white;
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-input, button {
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
-
-button {
-    background-color: #333;
-    color: white;
-    cursor: pointer;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
 table {
@@ -62,23 +29,51 @@ table {
     margin-top: 20px;
 }
 
-th, td {
+table, th, td {
     border: 1px solid #ddd;
+}
+
+th, td {
     padding: 10px;
     text-align: left;
 }
 
 th {
-    background-color: #333;
+    background-color: #4A3AFF;
     color: white;
+}
+
+button {
+    background-color: #4A3AFF;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #372BC1;
+}
+
+form {
+    margin-top: 10px;
+}
+
+input[type="text"], input[type="number"] {
+    width: calc(100% - 22px);
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
 }
 
 footer {
     text-align: center;
     padding: 10px;
-    background-color: #333;
+    background-color: #4A3AFF;
     color: white;
-    position: fixed;
-    width: 100%;
+    position: relative;
     bottom: 0;
+    width: 100%;
 }

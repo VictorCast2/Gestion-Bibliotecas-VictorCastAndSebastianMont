@@ -3,10 +3,8 @@ package com.App.Gestion_Bibliotecas_VictorCastAndSebastianMont.Services;
 import com.App.Gestion_Bibliotecas_VictorCastAndSebastianMont.Model.UserModel;
 import com.App.Gestion_Bibliotecas_VictorCastAndSebastianMont.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.*;
 import org.springframework.stereotype.Service;
-import java.util.stream.Collectors;
 import lombok.*;
 
 @Data
