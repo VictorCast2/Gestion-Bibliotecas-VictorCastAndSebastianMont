@@ -24,7 +24,7 @@ public class UserController {
     @PostMapping("/Prestamo")
     public String solicitarPrestamoLibro(@RequestParam("id") Long id) {
         libroServices.solicitarPrestamoLibro(id);
-        return "Usuarios";
+        return "redirect:/Api/User/Home";
     }
 
 }

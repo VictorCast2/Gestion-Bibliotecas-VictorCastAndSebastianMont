@@ -18,28 +18,22 @@ public class AdminController {
     @Autowired
     private final LibroServices libroServices;
 
-    @PostMapping("/UsuariosPrestamo")
-    public String buscarUsuariosPrestamos(Model model){
-        model.addAttribute("usuariosPrestamos", new ArrayList<>());
-        return "Libros";
-    }
-
     @PostMapping("/Agregar")
     public String agregarLibro(@ModelAttribute LibroModel libro) {
         libroServices.guardarLibro(libro);
-        return "Libros";
+        return "redirect:/Api/Admin/Home";
     }
 
     @PutMapping("/Actualizar")
     public String actualizarLibro(LibroModel libro) {
         libroServices.actualizarLibro(libro);
-        return "Libros";
+        return "redirect:/Api/Admin/Home";
     }
 
     @DeleteMapping("/Eliminar")
     public String eliminarLibro(@RequestParam Long id) {
         libroServices.eliminarLibro(id);
-        return "Libros";
+        return "redirect:/Api/Admin/Home";
     }
 
     @GetMapping("/Home")
