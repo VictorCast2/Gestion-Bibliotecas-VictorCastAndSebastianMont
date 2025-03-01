@@ -37,8 +37,7 @@ public class AdminController {
 
     @GetMapping("/Home")
     public String Admin(Model model) {
-        libroServices.buscarLibro();
-        model.addAttribute("libro","Libros");
+        model.addAttribute("libros",libroServices.buscarLibro());
         return "Libros";
     }
 
