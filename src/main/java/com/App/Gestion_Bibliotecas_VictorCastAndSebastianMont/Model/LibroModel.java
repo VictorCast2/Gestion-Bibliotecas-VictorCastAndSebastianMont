@@ -26,8 +26,8 @@ public class LibroModel {
     @Column(name = "Autor")
     private String Autor;
 
-    @Column(name = "Año")
-    private String Año;
+    @Column(name = "Anno")
+    private String Anno;
 
     @Column(name = "Disponible")
     private int Disponible;
