@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestión de Libros</title>
-    <link rel="stylesheet" th:href="/Css/Usuarios.css">
+    <link rel="stylesheet" th:href="@{/Css/Usuarios.css}">
 </head>
 <body>
     <header>
@@ -19,39 +19,42 @@
     </header>
     
     <main>
-        <section>
-            <h2>Catálogo de Libros</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Titulo</th>
-                        <th>Género</th>
-                        <th>Descripcion</th>
-                        <th>Autor</th>
-                        <th>Año</th>
-                        <th>Disponible</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="libro : ${libros}">
-                            <td th:text="${libro.id}"></td>
-                            <td th:text="${libro.titulo}"></td>
-                            <td th:text="${libro.genero}"></td>
-                            <td th:text="${libro.descripcion}"></td>
-                            <td th:text="${libro.autor}"></td>
-                            <td th:text="${libro.año}"></td>
-                            <td th:text="${libro.disponible}"></td>
-                        <td>
-                            <form th:action="@{/Api/User/Prestamo}" method="post">
-                                <input type="hidden" name="id" th:value="${libro.id}">
-                                <button type="submit">Solicitar Préstamo</button>
-                            </form>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
+        <div class="table-container">
+            <section>
+                <h2>Catálogo de Libros</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Titulo</th>
+                                <th>Género</th>
+                                <th>Descripcion</th>
+                                <th>Autor</th>
+                                <th>Año</th>
+                                <th>Disponible</th>
+                            </tr>
+                        </thead>
+                    <tbody>
+
+                        <tr th:each="libro : ${libros}">
+                                <td th:text="${libro.id}"></td>
+                                <td th:text="${libro.titulo}"></td>
+                                <td th:text="${libro.genero}"></td>
+                                <td th:text="${libro.descripcion}"></td>
+                                <td th:text="${libro.autor}"></td>
+                                <td th:text="${libro.año}"></td>
+                                <td th:text="${libro.disponible}"></td>
+                            <td>
+                                <form th:action="@{/Api/User/Prestamo}" method="post">
+                                    <input type="hidden" name="id" th:value="${libro.id}">
+                                    <button type="submit">Solicitar Préstamo</button>
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </div>
     </main>
 </body>
 </html>
