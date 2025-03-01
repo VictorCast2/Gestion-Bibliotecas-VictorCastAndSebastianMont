@@ -15,6 +15,12 @@ public class CustomUserDetailsServices implements UserDetailsService {
     @Autowired
     private final UserRepository userRepository;
 
+    /**
+     * Método que se encarga de cargar un usuario por su nombre de usuario
+     * @param username Nombre de usuario
+     * @return Devuelve un usuario con los datos del usuario encontrado
+     * @throws UsernameNotFoundException Excepción que se lanza si no se encuentra el usuario
+     */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         System.out.println("Intentando autenticar usuario: " + username);
@@ -24,7 +30,7 @@ public class CustomUserDetailsServices implements UserDetailsService {
                     return new UsernameNotFoundException("Usuario no encontrado ... ");
                 });
         System.out.println("Usuario encontrado : " + usuario.getUsername()+ " ... " );
-        System.out.println(" La contraseña es : " + usuario.getPassword());
+        System.out.println(" La contraseña es : " + usuario.getPassword()+  " ... " );
         return new User(
                 // Devuelve un nuevo usuario con los datos del usuario encontrado
                 usuario.getUsername(),
