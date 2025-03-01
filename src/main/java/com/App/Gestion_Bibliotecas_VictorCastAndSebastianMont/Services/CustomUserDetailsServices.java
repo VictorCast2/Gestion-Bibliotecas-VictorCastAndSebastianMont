@@ -28,9 +28,20 @@ public class CustomUserDetailsServices implements UserDetailsService {
         System.out.println("Usuario encontrado : " + usuario.getUsername()+ " ... " );
         System.out.println(" La contraseña es : " + usuario.getPassword());
         return new User(
+                // Devuelve un nuevo usuario con los datos del usuario encontrado
                 usuario.getUsername(),
+                // Devuelve la contraseña del usuario
                 usuario.getPassword(),
-                usuario.getRoles().stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList())
+                // Devuelve si el usuario está habilitado
+                usuario.isEnabled(),
+                // Devuelve si la cuenta del usuario ha expirado
+                usuario.isAccountNonExpired(),
+                // Devuelve si las credenciales del usuario han expirado
+                usuario.isCredentialsNonExpired(),
+                // Devuelve si la cuenta del usuario está bloqueada
+                usuario.isAccountNonLocked(),
+                // Devuelve las autoridades del usuario
+                usuario.getAuthorities()
         );
     }
 

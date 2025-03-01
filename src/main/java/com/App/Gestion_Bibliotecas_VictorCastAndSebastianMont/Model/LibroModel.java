@@ -2,7 +2,6 @@ package com.App.Gestion_Bibliotecas_VictorCastAndSebastianMont.Model;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.slf4j.helpers.SubstituteLogger;
 
 @Data
 @Entity
@@ -21,10 +20,15 @@ public class LibroModel {
     @Column(name = "Genero")
     private String Genero;
 
+    @Column(name = "Descrición")
+    private String Descricion;
 
-    Descricion
-    Año
-    Autor
+    @Column(name = "Autor")
+    private String Autor;
+
+    @Column(name = "Año")
+    private String Año;
+
     @Column(name = "Disponible")
     private int Disponible;
 

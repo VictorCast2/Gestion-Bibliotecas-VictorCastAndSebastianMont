@@ -15,16 +15,16 @@ public class UserController {
     @Autowired
     private final LibroServices libroServices;
 
-    @GetMapping("/Buscar")
+    @GetMapping("/Home")
     public String buscarLibro() {
         libroServices.buscarLibro();
-        return "";
+        return "Usuarios";
     }
 
-    @GetMapping("/Prestamo")
+    @PostMapping("/Prestamo")
     public String solicitarPrestamoLibro(@RequestParam("id") Long id) {
         libroServices.solicitarPrestamoLibro(id);
-        return "";
+        return "Usuarios";
     }
 
 }

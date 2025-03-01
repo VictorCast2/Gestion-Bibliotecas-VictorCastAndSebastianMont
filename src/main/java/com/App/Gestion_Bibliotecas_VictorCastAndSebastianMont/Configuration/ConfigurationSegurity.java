@@ -12,10 +12,14 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.SessionManagementConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+
+import java.util.stream.Collectors;
 
 @Configuration
 @EnableWebSecurity
@@ -42,7 +46,7 @@ public class ConfigurationSegurity {
                 )
                 .formLogin(form -> form
                         .loginPage("/Api/Auth/Login") // Página de inicio de sesión personalizada
-                        .successHandler()
+                        .successHandler(AllSuccessHandler()) // Manejador de éxito personalizado
                         .failureUrl("/Error") // Redirigir si hay error
                         .permitAll() // Permitir acceso a la página de login
                 )
@@ -108,6 +112,19 @@ public class ConfigurationSegurity {
     }
 
     @Bean
-    public
+    public AuthenticationSuccessHandler AllSuccessHandler() {
+        return (request, response, authentication) -> {
+            String role = authentication.getAuthorities().stream()
+                    .map(authority -> authority.getAuthority().replace("ROLE_", ""))
+                    .findFirst()
+                    .orElse("");
+            String redirectUrl = switch (role) {
+                case "Admin" -> "/Api/Admin/Home";
+                case "User" -> "/Api/User/Home";
+                default -> "/Api/Auth/Login";
+            };
+            response.sendRedirect(redirectUrl);
+        };
+    }
 
 }

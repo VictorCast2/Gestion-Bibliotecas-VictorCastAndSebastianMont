@@ -8,8 +8,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static jakarta.persistence.CascadeType.ALL;
-
 @Data
 @Entity
 @Table(name = "Usuario")
@@ -43,16 +41,58 @@ public class UserModel implements UserDetails {
                 .collect(Collectors.toList());
     }
 
-    public String getPassword() {
-        return this.password;
+    /**
+     * Obtiene la contraseña del usuario.
+     * @return La contraseña del usuario.
+     */
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
     }
 
-    public Set<String> getRoles() {
-        return this.Roles;
+    /**
+     * Indica si la cuenta del usuario está bloqueada.
+     * @return Si la cuenta del usuario está bloqueada.
+     */
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
     }
 
+    /**
+     * Indica si las credenciales del usuario han expirado.
+     * @return Si las credenciales del usuario han expirado.
+     */
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    /**
+     * Indica si el usuario está habilitado.
+     * @return Si el usuario está habilitado.
+     */
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+    /**
+     * Obtiene el nombre de usuario.
+     * @return El nombre de usuario.
+     */
+    @Override
     public String getUsername() {
         return this.username;
+    }
+
+    /**
+     * Obtiene la contraseña del usuario.
+     * @return La contraseña del usuario.
+     */
+    @Override
+    public String getPassword() {
+        return this.password;
     }
 
 }

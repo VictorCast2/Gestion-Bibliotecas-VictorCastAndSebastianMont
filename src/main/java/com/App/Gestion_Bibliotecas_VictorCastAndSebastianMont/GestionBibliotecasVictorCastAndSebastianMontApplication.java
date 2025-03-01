@@ -14,17 +14,16 @@ public class GestionBibliotecasVictorCastAndSebastianMontApplication implements 
 
 	/**
 	 * Método que se ejecuta al iniciar la aplicación
-	 * @param args
 	 * @throws Exception
 	 */
 	@Override
 	public void run(String... args) throws Exception {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		String encodedPassword = encoder.encode("admin");
-		System.out.println(encodedPassword);
+		System.out.println("Password {Admin}: "+encodedPassword);
 
 		String encodedPassword2 = encoder.encode("user");
-		System.out.println(encodedPassword2);
+		System.out.println("Password {User}: "+encodedPassword2);
 	}
 
 }
