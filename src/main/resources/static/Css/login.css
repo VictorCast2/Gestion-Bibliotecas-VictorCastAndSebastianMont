@@ -81,10 +81,13 @@ form input {
 .btn {
     display: flex;
     align-items: center;
+    justify-content: center; /* Centrar contenido */
     gap: 8px;
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
+    width: 140px; /* Tamaño uniforme */
+    height: 40px;
 }
 
 .btn.google {
@@ -105,4 +108,10 @@ form input {
     color: #3bb78f;
     cursor: pointer;
     margin-top: 5px;
+}
+
+.btn svg {
+    width: 20px; /* Tamaño estándar */
+    height: 20px;
+    flex-shrink: 0; /* Evita que se deforme */
 }
