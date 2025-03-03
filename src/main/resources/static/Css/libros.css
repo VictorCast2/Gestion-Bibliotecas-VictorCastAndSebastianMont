@@ -1,146 +1,124 @@
-/* Reset básico */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+/* Estilos para la Biblioteca - Gama de colores coherente */
+
+:root {
+    --primary-color: #1e3a8a; /* Azul oscuro elegante */
+    --secondary-color: #3b82f6; /* Azul brillante */
+    --accent-color: #facc15; /* Amarillo vibrante */
+    --background-color: #f1f5f9; /* Gris muy claro */
+    --text-color: #1e293b; /* Gris oscuro */
+    --hover-color: #2563eb; /* Azul más intenso */
+    --danger-color: #dc2626; /* Rojo para eliminar */
 }
 
 body {
-    background-color: #121212; /* Fondo oscuro */
-    color: #e0e0e0; /* Texto en color claro */
-    padding: 20px;
-    transition: background-color 0.3s ease-in-out;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
 }
 
-/* Estilos del encabezado */
 header {
-    background-color: #1e1e1e;
+    background-color: var(--primary-color);
     color: white;
-    padding: 15px 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
-    transition: transform 0.3s ease-in-out;
-    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
-}
-
-header h1 {
-    font-size: 28px;
-    font-weight: bold;
-    animation: fadeIn 1s ease-in-out;
-}
-
-/* Estilos principales */
-main {
-    background: #1e1e1e;
-    padding: 20px;
-    margin-top: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
-    animation: fadeInUp 0.5s ease-in-out;
-}
-
-h2 {
-    color: #bb86fc;
-    margin-bottom: 15px;
+    padding: 1rem 0;
     text-align: center;
 }
 
-/* Estilos de la tabla */
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: var(--accent-color);
+}
+
+main {
+    padding: 2rem;
+    text-align: center;
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 10px;
-    background: #252525;
-    color: #e0e0e0;
-    transition: box-shadow 0.3s ease-in-out;
+    margin-top: 1rem;
+    background: white;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
 }
 
-table:hover {
-    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
-}
-
-table, th, td {
-    border: 1px solid #333;
-}
-
-th, td {
-    padding: 10px;
-    text-align: left;
-}
-
-th {
-    background-color: #333;
+thead {
+    background-color: var(--primary-color);
     color: white;
 }
 
-/* Estilos de los formularios */
-form {
-    margin-top: 15px;
-    animation: fadeIn 0.8s ease-in-out;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-}
-
-input, button {
+td, th {
     padding: 10px;
-    border: 1px solid #555;
-    border-radius: 5px;
-    background: #252525;
-    color: #e0e0e0;
-    transition: all 0.3s ease-in-out;
+    border: 1px solid var(--secondary-color);
 }
 
-input {
-    width: calc(100% - 20px);
+tbody tr:nth-child(even) {
+    background-color: var(--background-color);
+}
+
+tbody tr:hover {
+    background-color: var(--hover-color);
+    color: white;
 }
 
 button {
-    background-color: #bb86fc;
-    color: black;
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 10px 15px;
     border: none;
+    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+    font-weight: bold;
+    transition: 0.3s;
 }
 
 button:hover {
-    background-color: #9b59b6;
-    transform: scale(1.05);
-    box-shadow: 0 0 8px #bb86fc;
+    background-color: var(--hover-color);
 }
 
-/* Animaciones */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+button.danger {
+    background-color: var(--danger-color);
 }
 
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+button.danger:hover {
+    background-color: red;
 }
 
-/* Pie de página */
-footer {
-    text-align: center;
+form {
     margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+input {
     padding: 10px;
-    background-color: #1e1e1e;
-    color: white;
+    border: 1px solid var(--secondary-color);
     border-radius: 5px;
-    animation: fadeIn 1.2s ease-in-out;
+    width: 250px;
+}
+
+footer {
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: 2rem;
 }
